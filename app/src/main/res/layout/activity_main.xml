@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="employee"
+            type="uz.ilhomjon.databinding.models.Employee" />
+        <variable
+            name="myHandler"
+            type="uz.ilhomjon.databinding.MyHandler" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{employee.name}"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{employee.address}"
+            android:textSize="25sp"
+            android:visibility="@{TextUtils.isEmpty(employee.address) ? View.GONE : View.VISIBLE}" />
+
+        <TextView
+            android:id="@+id/tv_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{employee.salary.toString()}"
+            android:textSize="25sp" />
+        <TextView
+            android:id="@+id/tv_hobbies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{employee.hobbies}"
+            android:textSize="25sp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_1"
+            android:onClick="@{myHandler.delete}"
+            android:text="Delete"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edt_1"
+            android:text="@={employee.name}"
+            />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@mipmap/ic_launcher"
+            app.url="@{employee.avatar}"
+            />
+
+        <include
+            layout="@layout/employee_detals"
+            app:employee="@{employee}"/>
+    </LinearLayout>
+</layout>
